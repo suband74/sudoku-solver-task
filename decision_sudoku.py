@@ -1,7 +1,5 @@
 from typing import List, Tuple
-from datetime import datetime, timedelta
-import time
-import signal
+
 
 def find_unassigned(board: List[List[int]]) -> Tuple[int, int]:
     """
@@ -69,31 +67,3 @@ def solve(board: List[List[int]]) -> bool:
 
     board[i][j] = 0
     return False
-
-s = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 4],
-        [0, 0, 0, 0, 0, 0, 6, 9, 0],
-        [0, 7, 0, 0, 0, 3, 0, 0, 0],
-        [0, 0, 0, 0, 4, 0, 0, 6, 9],
-        [6, 0, 9, 0, 5, 0, 0, 0, 0],
-        [0, 0, 1, 3, 0, 0, 0, 8, 0],
-        [0, 0, 0, 7, 0, 4, 9, 0, 0],
-        [4, 0, 0, 0, 0, 6, 2, 0, 0],
-        [0, 0, 0, 8, 2, 0, 0, 4, 0]
-    ]
-#start = datetime.now()
-#solve(s)
-#finish = datetime.now()
-#a = timedelta(days=0, hours=0, minutes=0, seconds=0.5)
-#if finish - start <= a:
-    #print('ok')
-#else:
-    #print('no')
-#signal.alarm(1)
-#solve(s)
-#signal.alarm(0)
-
-for i in range(9):
-    for j in range(9):
-        s[i][j] = 0
-    print(s[i])
