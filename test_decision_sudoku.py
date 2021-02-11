@@ -4,6 +4,10 @@ import pytest
 
 
 def test_validation_sudoku_str():
+    """
+    Проверка входящего судоку на одинаковые цифры в строке
+    :return: True or False
+    """
     s = [[1, 2, 3, 4, 4, 6, 7, 8, 9],
          [4, 0, 6, 7, 8, 9, 1, 2, 3],
          [7, 8, 9, 1, 2, 3, 4, 0, 6],
@@ -19,6 +23,10 @@ def test_validation_sudoku_str():
 
 
 def test_validation_sudoku_column():
+    """
+        Проверка входящего судоку на одинаковые цифры в столбце
+        :return: True or False
+        """
     s = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
          [4, 0, 6, 7, 8, 9, 1, 2, 3],
          [7, 8, 9, 1, 2, 3, 4, 0, 6],
@@ -34,6 +42,10 @@ def test_validation_sudoku_column():
 
 
 def test_validation_sudoku_block():
+    """
+        Проверка входящего судоку на одинаковые цифры в блоке 3*3
+        :return: True or False
+        """
     s = [
         [1, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -51,6 +63,10 @@ def test_validation_sudoku_block():
 
 
 def test_validation_sudoku_type():
+    """
+        Проверка входящего судоку на тип данных(допускаются только целые цифры)
+        :return: True or False
+        """
     s = [
         [1, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -68,6 +84,10 @@ def test_validation_sudoku_type():
 
 
 def test_validation_sudoku_num():
+    """
+            Проверка входящего судоку на интервал входящих цифр(допускаются только цифры от 0 до 9)
+            :return: True or False
+            """
     s = [
         [1, -1, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],

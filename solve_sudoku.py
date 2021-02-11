@@ -3,9 +3,15 @@ from decision_sudoku import solve
 import click
 from collections import Counter
 import numpy as np
+from typing import List, Tuple
 
 
-def validation_sudoku(s: list):
+def validation_sudoku(s: List[List[int]]) :
+    """
+    проверка входящего судоку на валидность
+    :param s: List[List[int]]
+    :return:
+    """
     for u in range(len(s)):
         for r in range(len(s[u])):
             if not isinstance(s[u][r], int):
