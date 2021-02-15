@@ -19,7 +19,7 @@ def test_validation_sudoku_str():
          [9, 0, 2, 3, 4, 0, 6, 7, 8]]
     with pytest.raises(ValueError) as exc:
         validation_sudoku(s)
-        assert 'В строке одинаковые цифры. Судоку нерешаемая' == str(exc.value)
+        assert 'The same numbers in the string. Unsolvable sudoku' == str(exc.value)
 
 
 def test_validation_sudoku_column():
@@ -38,7 +38,7 @@ def test_validation_sudoku_column():
          [9, 0, 2, 3, 4, 0, 6, 7, 8]]
     with pytest.raises(ValueError) as exc:
         validation_sudoku(s)
-        assert 'В столбце одинаковые цифры. Судоку нерешаемая' == str(exc.value)
+        assert 'The same numbers in the column. Unsolvable sudoku' == str(exc.value)
 
 
 def test_validation_sudoku_block():
@@ -59,7 +59,7 @@ def test_validation_sudoku_block():
     ]
     with pytest.raises(ValueError) as exc:
         validation_sudoku(s)
-        assert 'В блоке одинаковые цифры. Судоку нерешаемая' == str(exc.value)
+        assert 'The same numbers in the block. Unsolvable sudoku' == str(exc.value)
 
 
 def test_validation_sudoku_type():
@@ -80,7 +80,7 @@ def test_validation_sudoku_type():
     ]
     with pytest.raises(TypeError) as exc:
         validation_sudoku(s)
-        assert 'В судоку можно вводить только цифры' == str(exc.value)
+        assert 'sudoku can only enter numbers from 0 to 9 inclusive' == str(exc.value)
 
 
 def test_validation_sudoku_num():
@@ -99,9 +99,9 @@ def test_validation_sudoku_num():
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
-    with pytest.raises(ValueError) as exc:
+    with pytest.raises(TypeError) as exc:
         validation_sudoku(s)
-        assert 'В судоку можно вводить только цифры от 0 до 9 включительно' == str(exc.value)
+        assert 'sudoku can only enter numbers from 0 to 9 inclusive' == str(exc.value)
 
 
 def test__box_slice():
@@ -215,5 +215,3 @@ def test_solved_sudoku():
         [4, 1, 3, 5, 9, 6, 2, 7, 8],
         [5, 9, 7, 8, 2, 1, 3, 4, 6]
     ]
-
-

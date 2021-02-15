@@ -1,12 +1,13 @@
 import json
-from decision_sudoku import solve
-import click
 from collections import Counter
-import numpy as np
-from typing import List, Tuple
+from typing import List
+
+import click
+
+from decision_sudoku import solve
 
 
-def validation_sudoku(s: List[List[int]]) :
+def validation_sudoku(s: List[List[int]]):
     """
     проверка входящего судоку на валидность
     :param s: List[List[int]]
@@ -14,32 +15,35 @@ def validation_sudoku(s: List[List[int]]) :
     """
     for u in range(len(s)):
         for r in range(len(s[u])):
-            if not isinstance(s[u][r], int):
-                raise TypeError('В судоку можно вводить только цифры')
-    for a in range(len(s)):
-        for b in range(len(s[a])):
-            if 9 < s[a][b] or s[a][b] < 0:
-                raise ValueError('В судоку можно вводить только цифры от 0 до 9 включительно')
+            if not isinstance(s[u][r], int) or 9 < s[u][r] or s[u][r] < 0:
+                raise TypeError('sudoku can only enter numbers from 0 to 9 inclusive')
+
     for i in range(len(s)):
         x = Counter(s[i])
         for key in x:
             if key != 0 and x[key] != 1:
-                raise ValueError('В строке одинаковые цифры. Судоку нерешаемая')
-    y = np.array(s)
+                raise ValueError('The same numbers in the string. Unsolvable sudoku')
+
+    s = list(zip(s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8]))
     for n in range(len(s)):
-        x = y[:, n]
-        x = Counter(x)
+        x = Counter(s[n])
         for key in x:
             if key != 0 and x[key] != 1:
-                raise ValueError('В столбце одинаковые цифры. Судоку нерешаемая')
-    for k in range(0, 7, 3):
-        for t in range(0, 7, 3):
-            x = y[k:k+3, t:t+3]
-            x = x.ravel()
-            x = Counter(x)
-            for key in x:
-                if key != 0 and x[key] != 1:
-                    raise ValueError('В блоке одинаковые цифры. Судоку нерешаемая')
+                raise ValueError('The same numbers in the column. Unsolvable sudoku')
+
+    d = [[], [], [], [], [], [], [], [], []]
+    n = 0
+    for m in range(0, 7, 3):
+        for k in range(0, 7, 3):
+            for i in range(k, k + 3):
+                for j in range(m, m + 3):
+                    d[n].append(s[i][j])
+            n += 1
+    for g in range(len(d)):
+        x = Counter(d[g])
+        for key in x:
+            if key != 0 and x[key] != 1:
+                raise ValueError('The same numbers in the block. Unsolvable sudoku')
 
 
 @click.command()
@@ -50,8 +54,8 @@ def main(file_start_sudoku):
         sudoku = data['table']
         validation_sudoku(sudoku)
         solve(sudoku)
-    with open('result.json', 'w') as file:
-        json.dump(data, file)
+        with open('result.json', 'w') as file:
+            json.dump(data, file)
 
 
 if __name__ == '__main__':
