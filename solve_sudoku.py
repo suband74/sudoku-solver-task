@@ -42,17 +42,27 @@ def validate_sudoku(s: List[List[int]]):
     search_same_numbers(d)
 
 
+# @click.command()
+# @click.argument('file_start_sudoku')
+# def main(file_start_sudoku):
+#     with open(file_start_sudoku) as f:
+#         data = json.load(f)
+#         sudoku = data['table']
+#         validate_sudoku(sudoku)
+#         solve(sudoku)
+#         with open('result.json', 'w') as file:
+#             json.dump(data, file)
 @click.command()
-@click.argument('file_start_sudoku')
-def main(file_start_sudoku):
+@click.argument('file_start_sudoku', type=click.Path(exists=True))
+@click.argument('file_result_sudoku', type=click.Path(exists=False))
+def main(file_start_sudoku, file_result_sudoku):
     with open(file_start_sudoku) as f:
         data = json.load(f)
         sudoku = data['table']
         validate_sudoku(sudoku)
         solve(sudoku)
-        with open('result.json', 'w') as file:
+        with open(file_result_sudoku, 'w') as file:
             json.dump(data, file)
-
 
 if __name__ == '__main__':
     main()
