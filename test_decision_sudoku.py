@@ -1,4 +1,107 @@
 from decision_sudoku import _box_slice, solve, _find_unassigned
+from solve_sudoku import validate_sudoku
+import pytest
+
+
+def test_validate_sudoku_str():
+    """
+    Проверка входящего судоку на одинаковые цифры в строке
+    :return: True or False
+    """
+    s = [[1, 2, 3, 4, 4, 6, 7, 8, 9],
+         [4, 0, 6, 7, 8, 9, 1, 2, 3],
+         [7, 8, 9, 1, 2, 3, 4, 0, 6],
+         [2, 3, 4, 0, 6, 7, 8, 9, 1],
+         [0, 6, 7, 8, 9, 1, 2, 3, 4],
+         [8, 9, 1, 2, 3, 4, 0, 6, 7],
+         [3, 4, 0, 6, 7, 8, 9, 1, 2],
+         [6, 7, 8, 9, 1, 2, 3, 4, 0],
+         [9, 0, 2, 3, 4, 0, 6, 7, 8]]
+    with pytest.raises(ValueError) as exc:
+        validate_sudoku(s)
+        assert 'The same numbers in the string (column,block). Unsolvable sudoku' == str(exc.value)
+
+
+def test_validate_sudoku_column():
+    """
+        Проверка входящего судоку на одинаковые цифры в столбце
+        :return: True or False
+        """
+    s = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
+         [4, 0, 6, 7, 8, 9, 1, 2, 3],
+         [7, 8, 9, 1, 2, 3, 4, 0, 6],
+         [2, 3, 4, 0, 6, 7, 8, 9, 1],
+         [0, 6, 7, 8, 9, 1, 2, 3, 4],
+         [2, 9, 1, 0, 3, 4, 0, 6, 7],
+         [3, 4, 0, 6, 7, 8, 9, 1, 2],
+         [6, 7, 8, 9, 1, 2, 3, 4, 0],
+         [9, 0, 2, 3, 4, 0, 6, 7, 8]]
+    with pytest.raises(ValueError) as exc:
+        validate_sudoku(s)
+        assert 'The same numbers in the string (column,block). Unsolvable sudoku' == str(exc.value)
+
+
+def test_validate_sudoku_block():
+    """
+        Проверка входящего судоку на одинаковые цифры в блоке 3*3
+        :return: True or False
+        """
+    s = [
+        [1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+    with pytest.raises(ValueError) as exc:
+        validate_sudoku(s)
+        assert 'The same numbers in the string (column,block). Unsolvable sudoku' == str(exc.value)
+
+
+def test_validate_sudoku_type():
+    """
+        Проверка входящего судоку на тип данных(допускаются только целые цифры)
+        :return: True or False
+        """
+    s = [
+        [1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 'm', 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+    with pytest.raises(TypeError) as exc:
+        validate_sudoku(s)
+        assert 'sudoku can only enter numbers from 0 to 9 inclusive' == str(exc.value)
+
+
+def test_validate_sudoku_num():
+    """
+            Проверка входящего судоку на интервал входящих цифр(допускаются только цифры от 0 до 9)
+            :return: True or False
+            """
+    s = [
+        [1, -1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+    with pytest.raises(TypeError) as exc:
+        validate_sudoku(s)
+        assert 'sudoku can only enter numbers from 0 to 9 inclusive' == str(exc.value)
 
 
 def test__box_slice():
@@ -112,32 +215,3 @@ def test_solved_sudoku():
         [4, 1, 3, 5, 9, 6, 2, 7, 8],
         [5, 9, 7, 8, 2, 1, 3, 4, 6]
     ]
-
-
-def test_completed_random_number():
-    """
-    Работа функции с заполненным случайными числами судоку
-    :return: Булево
-    """
-    s = [
-        [1, 3, 6, 6, 7, 5, 8, 3, 4],
-        [3, 5, 8, 7, 1, 2, 6, 9, 7],
-        [9, 7, 4, 4, 8, 3, 1, 2, 5],
-        [2, 3, 5, 9, 3, 8, 7, 6, 9],
-        [6, 1, 9, 0, 5, 9, 4, 1, 3],
-        [7, 2, 1, 3, 6, 9, 5, 8, 2],
-        [8, 6, 2, 5, 3, 4, 9, 5, 1],
-        [4, 1, 3, 5, 9, 6, 7, 7, 8],
-        [5, 9, 7, 9, 2, 1, 5, 4, 6]
-    ]
-    solve(s)
-    assert s == [[1, 3, 6, 6, 7, 5, 8, 3, 4],
-                 [3, 5, 8, 7, 1, 2, 6, 9, 7],
-                 [9, 7, 4, 4, 8, 3, 1, 2, 5],
-                 [2, 3, 5, 9, 3, 8, 7, 6, 9],
-                 [6, 1, 9, 2, 5, 9, 4, 1, 3],
-                 [7, 2, 1, 3, 6, 9, 5, 8, 2],
-                 [8, 6, 2, 5, 3, 4, 9, 5, 1],
-                 [4, 1, 3, 5, 9, 6, 7, 7, 8],
-                 [5, 9, 7, 9, 2, 1, 5, 4, 6]
-                 ]
