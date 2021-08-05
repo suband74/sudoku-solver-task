@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <title>Решатель судоку</title>
+</head>
+<body>
+    <div id="container">
+    <h2>Введите данные</h2>
+    <div><strong>Внимание!!!</strong>Вводить только цифры от 0 до 9! Все ячейки дожны быть заполнены! </div>
+    <form action="/" method='post' class='form-solve'>
+    <p> <input type="text" value="0" name='11' class="form-el"/>
+        <input type="text" value="0" name='12' class="form-el"/>
+        <input type="text" value="0" name='13' class="form-el"/>
+        <input type="text" value="0" name='14' class="form-el"/>
+        <input type="text" value="0" name='15' class="form-el"/>
+        <input type="text" value="0" name='16' class="form-el"/>
+        <input type="text" value="0" name='17' class="form-el"/>
+        <input type="text" value="0" name='18' class="form-el"/>
+        <input type="text" value="0" name='19' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='21' class="form-el"/>
+        <input type="text" value="0" name='22' class="form-el"/>
+        <input type="text" value="0" name='23' class="form-el"/>
+        <input type="text" value="0" name='24' class="form-el"/>
+        <input type="text" value="0" name='25' class="form-el"/>
+        <input type="text" value="0" name='26' class="form-el"/>
+        <input type="text" value="0" name='27' class="form-el"/>
+        <input type="text" value="0" name='28' class="form-el"/>
+        <input type="text" value="0" name='29' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='31' class="form-el"/>
+        <input type="text" value="0" name='32' class="form-el"/>
+        <input type="text" value="0" name='33' class="form-el"/>
+        <input type="text" value="0" name='34' class="form-el"/>
+        <input type="text" value="0" name='35' class="form-el"/>
+        <input type="text" value="0" name='36' class="form-el"/>
+        <input type="text" value="0" name='37' class="form-el"/>
+        <input type="text" value="0" name='38' class="form-el"/>
+        <input type="text" value="0" name='39' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='41' class="form-el"/>
+        <input type="text" value="0" name='42' class="form-el"/>
+        <input type="text" value="0" name='43' class="form-el"/>
+        <input type="text" value="0" name='44' class="form-el"/>
+        <input type="text" value="0" name='45' class="form-el"/>
+        <input type="text" value="0" name='46' class="form-el"/>
+        <input type="text" value="0" name='47' class="form-el"/>
+        <input type="text" value="0" name='48' class="form-el"/>
+        <input type="text" value="0" name='49' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='51' class="form-el"/>
+        <input type="text" value="0" name='52' class="form-el"/>
+        <input type="text" value="0" name='53' class="form-el"/>
+        <input type="text" value="0" name='54' class="form-el"/>
+        <input type="text" value="0" name='55' class="form-el"/>
+        <input type="text" value="0" name='56' class="form-el"/>
+        <input type="text" value="0" name='57' class="form-el"/>
+        <input type="text" value="0" name='58' class="form-el"/>
+        <input type="text" value="0" name='59' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='61' class="form-el"/>
+        <input type="text" value="0" name='62' class="form-el"/>
+        <input type="text" value="0" name='63' class="form-el"/>
+        <input type="text" value="0" name='64' class="form-el"/>
+        <input type="text" value="0" name='65' class="form-el"/>
+        <input type="text" value="0" name='66' class="form-el"/>
+        <input type="text" value="0" name='67' class="form-el"/>
+        <input type="text" value="0" name='68' class="form-el"/>
+        <input type="text" value="0" name='69' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='71' class="form-el"/>
+        <input type="text" value="0" name='72' class="form-el"/>
+        <input type="text" value="0" name='73' class="form-el"/>
+        <input type="text" value="0" name='74' class="form-el"/>
+        <input type="text" value="0" name='75' class="form-el"/>
+        <input type="text" value="0" name='76' class="form-el"/>
+        <input type="text" value="0" name='77' class="form-el"/>
+        <input type="text" value="0" name='78' class="form-el"/>
+        <input type="text" value="0" name='79' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='81' class="form-el"/>
+        <input type="text" value="0" name='82' class="form-el"/>
+        <input type="text" value="0" name='83' class="form-el"/>
+        <input type="text" value="0" name='84' class="form-el"/>
+        <input type="text" value="0" name='85' class="form-el"/>
+        <input type="text" value="0" name='86' class="form-el"/>
+        <input type="text" value="0" name='87' class="form-el"/>
+        <input type="text" value="0" name='88' class="form-el"/>
+        <input type="text" value="0" name='89' class="form-el"/>
+    </p>
+    <p> <input type="text" value="0" name='91' class="form-el"/>
+        <input type="text" value="0" name='92' class="form-el"/>
+        <input type="text" value="0" name='93' class="form-el"/>
+        <input type="text" value="0" name='94' class="form-el"/>
+        <input type="text" value="0" name='95' class="form-el"/>
+        <input type="text" value="0" name='96' class="form-el"/>
+        <input type="text" value="0" name='97' class="form-el"/>
+        <input type="text" value="0" name='98' class="form-el"/>
+        <input type="text" value="0" name='99' class="form-el"/>
+    </p>
+    
+    <p><input type="submit" value="Отправить" class="form-sub"></p>
+
+    {% if sudoku %}
+    <table border="1">
+        <h2>Получите решение!</h2>
+        
+        <tr><td>{{ sudoku[0][0] }}</td><td>{{ sudoku[0][1] }}</td><td>{{ sudoku[0][2] }}</td><td>{{ sudoku[0][3] }}</td><td>{{ sudoku[0][4] }}</td><td>{{ sudoku[0][5] }}</td><td>{{ sudoku[0][6] }}</td><td>{{ sudoku[0][7] }}</td><td>{{ sudoku[0][8] }}</td></tr>
+        <tr><td>{{ sudoku[1][0] }}</td><td>{{ sudoku[1][1] }}</td><td>{{ sudoku[1][2] }}</td><td>{{ sudoku[1][3] }}</td><td>{{ sudoku[1][4] }}</td><td>{{ sudoku[1][5] }}</td><td>{{ sudoku[1][6] }}</td><td>{{ sudoku[1][7] }}</td><td>{{ sudoku[1][8] }}</td></tr>
+        <tr><td>{{ sudoku[2][0] }}</td><td>{{ sudoku[2][1] }}</td><td>{{ sudoku[2][2] }}</td><td>{{ sudoku[2][3] }}</td><td>{{ sudoku[2][4] }}</td><td>{{ sudoku[2][5] }}</td><td>{{ sudoku[2][6] }}</td><td>{{ sudoku[2][7] }}</td><td>{{ sudoku[2][8] }}</td></tr>
+        <tr><td>{{ sudoku[3][0] }}</td><td>{{ sudoku[3][1] }}</td><td>{{ sudoku[3][2] }}</td><td>{{ sudoku[3][3] }}</td><td>{{ sudoku[3][4] }}</td><td>{{ sudoku[3][5] }}</td><td>{{ sudoku[3][6] }}</td><td>{{ sudoku[3][7] }}</td><td>{{ sudoku[3][8] }}</td></tr>
+        <tr><td>{{ sudoku[4][0] }}</td><td>{{ sudoku[4][1] }}</td><td>{{ sudoku[4][2] }}</td><td>{{ sudoku[4][3] }}</td><td>{{ sudoku[4][4] }}</td><td>{{ sudoku[4][5] }}</td><td>{{ sudoku[4][6] }}</td><td>{{ sudoku[4][7] }}</td><td>{{ sudoku[4][8] }}</td></tr>
+        <tr><td>{{ sudoku[5][0] }}</td><td>{{ sudoku[5][1] }}</td><td>{{ sudoku[5][2] }}</td><td>{{ sudoku[5][3] }}</td><td>{{ sudoku[5][4] }}</td><td>{{ sudoku[5][5] }}</td><td>{{ sudoku[5][6] }}</td><td>{{ sudoku[5][7] }}</td><td>{{ sudoku[5][8] }}</td></tr>
+        <tr><td>{{ sudoku[6][0] }}</td><td>{{ sudoku[6][1] }}</td><td>{{ sudoku[6][2] }}</td><td>{{ sudoku[6][3] }}</td><td>{{ sudoku[6][4] }}</td><td>{{ sudoku[6][5] }}</td><td>{{ sudoku[6][6] }}</td><td>{{ sudoku[6][7] }}</td><td>{{ sudoku[6][8] }}</td></tr>
+        <tr><td>{{ sudoku[7][0] }}</td><td>{{ sudoku[7][1] }}</td><td>{{ sudoku[7][2] }}</td><td>{{ sudoku[7][3] }}</td><td>{{ sudoku[7][4] }}</td><td>{{ sudoku[7][5] }}</td><td>{{ sudoku[7][6] }}</td><td>{{ sudoku[7][7] }}</td><td>{{ sudoku[7][8] }}</td></tr>
+        <tr><td>{{ sudoku[8][0] }}</td><td>{{ sudoku[8][1] }}</td><td>{{ sudoku[8][2] }}</td><td>{{ sudoku[8][3] }}</td><td>{{ sudoku[8][4] }}</td><td>{{ sudoku[8][5] }}</td><td>{{ sudoku[8][6] }}</td><td>{{ sudoku[8][7] }}</td><td>{{ sudoku[8][8] }}</td></tr>
+    
+       </table>
+    {% endif %}
+
+    {% if a %}
+    <h2>Невозможно решить судоку. Невалидные данные</h2>
+    {% endif %}
+
+</div>
+</body>
+</html>

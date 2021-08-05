@@ -1,0 +1,14 @@
+.form-el {
+    max-width: 50px;
+}
+#container {
+    width: 900px;
+    margin: auto;
+}
+td {
+    width: 40px;
+    text-align: center;
+}
+tr {
+    height: 40px;
+}
