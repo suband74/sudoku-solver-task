@@ -7,12 +7,30 @@ import click
 from decision_sudoku import solve
 
 
+class Box:
+    def __init__(self, table, row_idx, column_idx):
+        self._rows = table[row_idx:row_idx + 3]
+        self._column_idx = column_idx
+
+    def __iter__(self):
+        for row in self._rows:
+            for column_idx in range(self._column_idx, self._column_idx + 3):
+                yield row[column_idx]
+
+
+def iterate_by_boxes(table):
+    for i in (0, 3, 6):
+        for j in (0, 3, 6):
+            yield Box(table, i, j)
+
+
 def search_same_numbers(s):
     for i in s:
         x = Counter(i)
         for key in x:
             if key != 0 and x[key] != 1:
-                raise ValueError('The same numbers in the string (column,block). Unsolvable sudoku')
+                raise ValueError(
+                    'The same numbers in the string (column,block). Unsolvable sudoku')
 
 
 def validate_sudoku(s: List[List[int]]):
@@ -24,21 +42,18 @@ def validate_sudoku(s: List[List[int]]):
     for u in s:
         for r in u:
             if not isinstance(r, int) or 9 < r or r < 0:
-                raise TypeError('sudoku can only enter numbers from 0 to 9 inclusive')
+                raise TypeError(
+                    'sudoku can only enter numbers from 0 to 9 inclusive')
 
     search_same_numbers(s)
 
     ss = list(zip(*s))
     search_same_numbers(ss)
 
-    d = [[], [], [], [], [], [], [], [], []]
-    n = 0
-    for m in range(0, 7, 3):
-        for k in range(0, 7, 3):
-            for i in range(k, k + 3):
-                for j in range(m, m + 3):
-                    d[n].append(s[i][j])
-            n += 1
+    d = []
+    for box in iterate_by_boxes(s):
+        d.append([elem for elem in box])
+
     search_same_numbers(d)
 
 

@@ -104,7 +104,7 @@ def test_validate_sudoku_num():
         assert 'sudoku can only enter numbers from 0 to 9 inclusive' == str(exc.value)
 
 
-def test__box_slice():
+#def test__box_slice():
     """
     Проверяет правильность возвращаемого слайса
     :return: слайс
@@ -140,7 +140,7 @@ def test_solve():
     ]
 
 
-def test__find_unassigned():
+#def test__find_unassigned():
     """
     Ищет пустое значение в таблице
     :return: координаты пустого значения в таблице
