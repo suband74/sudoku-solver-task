@@ -108,13 +108,6 @@ def test_validate_sudoku_num():
         validate_sudoku(sudoku_wrong)
         assert "sudoku can only enter numbers from 0 to 9 inclusive" == str(exc.value)
 
-    # def test__box_slice():
-    """
-    Проверяет правильность возвращаемого слайса
-    :return: слайс
-    """
-    assert _box_slice(3) == slice(3, 6, None)
-
 
 def test_solve():
     """
@@ -144,25 +137,6 @@ def test_solve():
         [6, 7, 8, 9, 1, 2, 3, 4, 5],
         [9, 1, 2, 3, 4, 5, 6, 7, 8],
     ]
-
-    # def test__find_unassigned():
-    """
-    Ищет пустое значение в таблице
-    :return: координаты пустого значения в таблице
-    """
-    assert _find_unassigned(
-        [
-            [1, 2, 3, 4, 0, 6, 7, 8, 9],
-            [4, 5, 6, 7, 8, 9, 1, 2, 3],
-            [7, 8, 9, 1, 2, 3, 4, 5, 6],
-            [2, 3, 4, 5, 6, 7, 8, 9, 1],
-            [5, 6, 7, 8, 9, 1, 2, 3, 4],
-            [8, 9, 1, 2, 3, 4, 5, 6, 7],
-            [3, 4, 5, 6, 7, 8, 9, 1, 2],
-            [6, 7, 8, 9, 1, 2, 3, 4, 5],
-            [9, 1, 2, 3, 4, 5, 6, 7, 8],
-        ]
-    ) == (0, 4)
 
 
 def test_solve_with_all_empty_cells():
