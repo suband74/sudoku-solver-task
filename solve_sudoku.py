@@ -12,7 +12,7 @@ def search_same_numbers(s):
         x = Counter(i)
         for key in x:
             if key != 0 and x[key] != 1:
-                raise ValueError('The same numbers in the string (column,block). Unsolvable sudoku')
+                raise ValueError("The same numbers in the string (column,block). Unsolvable sudoku")
 
 
 def validate_sudoku(s: List[List[int]]):
@@ -24,7 +24,7 @@ def validate_sudoku(s: List[List[int]]):
     for u in s:
         for r in u:
             if not isinstance(r, int) or 9 < r or r < 0:
-                raise TypeError('sudoku can only enter numbers from 0 to 9 inclusive')
+                raise TypeError("sudoku can only enter numbers from 0 to 9 inclusive")
 
     search_same_numbers(s)
 
@@ -43,17 +43,17 @@ def validate_sudoku(s: List[List[int]]):
 
 
 @click.command()
-@click.argument('file_start_sudoku', type=click.Path(exists=True))
-@click.argument('file_result_sudoku', type=click.Path(exists=False))
+@click.argument("file_start_sudoku", type=click.Path(exists=True))
+@click.argument("file_result_sudoku", type=click.Path(exists=False))
 def main(file_start_sudoku, file_result_sudoku):
     with open(file_start_sudoku) as f:
         data = json.load(f)
-        sudoku = data['table']
+        sudoku = data["table"]
         validate_sudoku(sudoku)
         solve(sudoku)
-        with open(file_result_sudoku, 'w') as file:
+        with open(file_result_sudoku, "w") as file:
             json.dump(data, file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
