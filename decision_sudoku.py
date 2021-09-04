@@ -34,13 +34,9 @@ def _suitable_number(board: List[List[int]], i: int, j: int, num: int) -> bool:
     :return: булево, в зависимости от того, подходит ли это число.
     """
     return (
-            all(cell != num for cell in board[i]) and
-            all(row[j] != num for row in board) and
-            all(
-                cell != num
-                for row in board[_box_slice(i)]
-                for cell in row[_box_slice(j)]
-            )
+        all(cell != num for cell in board[i])
+        and all(row[j] != num for row in board)
+        and all(cell != num for row in board[_box_slice(i)] for cell in row[_box_slice(j)])
     )
 
 
