@@ -2,8 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.vscode
-Pipfile
 
 
 # C extensions
@@ -133,3 +131,6 @@ dmypy.json
 
 # Jetbrains' IDEs
 .idea
+
+#vscode
+.vscode
