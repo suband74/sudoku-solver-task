@@ -48,9 +48,8 @@ def validate_sudoku(s: List[List[int]]):
     ss = list(zip(*s))
     search_same_numbers(ss)
 
-    d = []
-    for box in iterate_by_boxes(s):
-        d.append([elem for elem in box])
+    
+    d = [[elem for elem in box] for box in iterate_by_boxes(s)]
 
     search_same_numbers(d)
 
