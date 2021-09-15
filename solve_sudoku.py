@@ -7,12 +7,29 @@ import click
 from decision_sudoku import solve
 
 
+class Box:
+    def __init__(self, table, row_idx, column_idx):
+        self._rows = table[row_idx : row_idx + 3]
+        self._column_idx = column_idx
+
+    def __iter__(self):
+        for row in self._rows:
+            for column_idx in range(self._column_idx, self._column_idx + 3):
+                yield row[column_idx]
+
+
+def iterate_by_boxes(table):
+    for i in (0, 3, 6):
+        for j in (0, 3, 6):
+            yield Box(table, i, j)
+
+
 def search_same_numbers(s):
     for i in s:
         x = Counter(i)
         for key in x:
             if key != 0 and x[key] != 1:
-                raise ValueError('The same numbers in the string (column,block). Unsolvable sudoku')
+                raise ValueError("The same numbers in the string (column,block). Unsolvable sudoku")
 
 
 def validate_sudoku(s: List[List[int]]):
@@ -24,36 +41,31 @@ def validate_sudoku(s: List[List[int]]):
     for u in s:
         for r in u:
             if not isinstance(r, int) or 9 < r or r < 0:
-                raise TypeError('sudoku can only enter numbers from 0 to 9 inclusive')
+                raise TypeError("sudoku can only enter numbers from 0 to 9 inclusive")
 
     search_same_numbers(s)
 
     ss = list(zip(*s))
     search_same_numbers(ss)
 
-    d = [[], [], [], [], [], [], [], [], []]
-    n = 0
-    for m in range(0, 7, 3):
-        for k in range(0, 7, 3):
-            for i in range(k, k + 3):
-                for j in range(m, m + 3):
-                    d[n].append(s[i][j])
-            n += 1
+    
+    d = [[elem for elem in box] for box in iterate_by_boxes(s)]
+
     search_same_numbers(d)
 
 
 @click.command()
-@click.argument('file_start_sudoku', type=click.Path(exists=True))
-@click.argument('file_result_sudoku', type=click.Path(exists=False))
+@click.argument("file_start_sudoku", type=click.Path(exists=True))
+@click.argument("file_result_sudoku", type=click.Path(exists=False))
 def main(file_start_sudoku, file_result_sudoku):
     with open(file_start_sudoku) as f:
         data = json.load(f)
-        sudoku = data['table']
+        sudoku = data["table"]
         validate_sudoku(sudoku)
         solve(sudoku)
-        with open(file_result_sudoku, 'w') as file:
+        with open(file_result_sudoku, "w") as file:
             json.dump(data, file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
