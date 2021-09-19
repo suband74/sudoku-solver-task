@@ -7,10 +7,10 @@ def _find_unassigned(board: List[List[int]]) -> Tuple[int, int]:
     :param board: только числа 0-8
     :return: координаты пустой ячейки, только числа -1 - +8
     """
-    for i in range(9):
-        for j in range(9):
-            if board[i][j] == 0:
-                return i, j
+    for row in range(9):
+        for column in range(9):
+            if board[row][column] == 0:
+                return row, column
     return -1, -1
 
 
@@ -24,7 +24,7 @@ def _box_slice(i: int) -> slice:
     return slice(i, i + 3)
 
 
-def _suitable_number(board: List[List[int]], i: int, j: int, num: int) -> bool:
+def _suitable_number(board: List[List[int]], row: int, column: int, num: int) -> bool:
     """
     проверяем существует ли такое число в строке, столбце, и в слайсе
     :param board: только числа 0-8
@@ -34,13 +34,11 @@ def _suitable_number(board: List[List[int]], i: int, j: int, num: int) -> bool:
     :return: булево, в зависимости от того, подходит ли это число.
     """
     return (
-            all(cell != num for cell in board[i]) and
-            all(row[j] != num for row in board) and
-            all(
-                cell != num
-                for row in board[_box_slice(i)]
-                for cell in row[_box_slice(j)]
-            )
+        all(cell != num for cell in board[row])
+        and all(row[column] != num for row in board)
+        and all(
+            cell != num for row in board[_box_slice(row)] for cell in row[_box_slice(column)]
+        )
     )
 
 

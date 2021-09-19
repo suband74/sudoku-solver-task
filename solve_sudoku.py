@@ -9,7 +9,7 @@ from decision_sudoku import solve
 
 class Box:
     def __init__(self, table, row_idx, column_idx):
-        self._rows = table[row_idx : row_idx + 3]
+        self._rows = table[row_idx: row_idx + 3]
         self._column_idx = column_idx
 
     def __iter__(self):
@@ -18,40 +18,41 @@ class Box:
                 yield row[column_idx]
 
 
-def iterate_by_boxes(table):
-    for i in (0, 3, 6):
-        for j in (0, 3, 6):
-            yield Box(table, i, j)
+def iterate_by_boxes(table: List[List]):
+    for row in (0, 3, 6):
+        for column in (0, 3, 6):
+            yield Box(table, row, column)
 
 
-def search_same_numbers(s):
-    for i in s:
-        x = Counter(i)
-        for key in x:
-            if key != 0 and x[key] != 1:
-                raise ValueError("The same numbers in the string (column,block). Unsolvable sudoku")
+def search_same_numbers(sudoku_input: List[List]):
+    for row in sudoku_input:
+        dict_same_key = Counter(row)
+        for key in dict_same_key:
+            if key != 0 and dict_same_key[key] != 1:
+                raise ValueError(
+                    "The same numbers in the string (column,block). Unsolvable sudoku.",
+                )
 
 
-def validate_sudoku(s: List[List[int]]):
+def validate_sudoku(sudoku_input: List[List[int]]):
     """
     проверка входящего судоку на валидность
     :param s: List[List[int]]
     :return:
     """
-    for u in s:
-        for r in u:
-            if not isinstance(r, int) or 9 < r or r < 0:
+    for row in sudoku_input:
+        for cell in row:
+            if not isinstance(cell, int) or 9 < cell or cell < 0:
                 raise TypeError("sudoku can only enter numbers from 0 to 9 inclusive")
 
-    search_same_numbers(s)
+    search_same_numbers(sudoku_input)
 
-    ss = list(zip(*s))
-    search_same_numbers(ss)
+    sudoku_input_zip = list(zip(*sudoku_input))
+    search_same_numbers(sudoku_input_zip)
 
-    
-    d = [[elem for elem in box] for box in iterate_by_boxes(s)]
+    sudoku_box = [[elem for elem in box] for box in iterate_by_boxes(sudoku_input)]
 
-    search_same_numbers(d)
+    search_same_numbers(sudoku_box)
 
 
 @click.command()

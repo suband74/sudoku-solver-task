@@ -1,6 +1,7 @@
+from decision_sudoku import solve
+
 import pytest
 
-from decision_sudoku import solve
 from solve_sudoku import validate_sudoku
 
 
@@ -22,7 +23,10 @@ def test_validate_sudoku_str():
     ]
     with pytest.raises(ValueError) as exc:
         validate_sudoku(sudoku_wrong)
-        assert "The same numbers in the string (column,block). Unsolvable sudoku" == str(exc.value)
+        assert (
+            "The same numbers in the string (column,block). Unsolvable sudoku"
+            == str(exc.value)
+        )
 
 
 def test_validate_sudoku_column():
@@ -43,7 +47,10 @@ def test_validate_sudoku_column():
     ]
     with pytest.raises(ValueError) as exc:
         validate_sudoku(sudoku_wrong)
-        assert "The same numbers in the string (column,block). Unsolvable sudoku" == str(exc.value)
+        assert (
+            "The same numbers in the string (column,block). Unsolvable sudoku"
+            == str(exc.value)
+        )
 
 
 def test_validate_sudoku_block():
@@ -64,7 +71,10 @@ def test_validate_sudoku_block():
     ]
     with pytest.raises(ValueError) as exc:
         validate_sudoku(sudoku_wrong)
-        assert "The same numbers in the string (column,block). Unsolvable sudoku" == str(exc.value)
+        assert (
+            "The same numbers in the string (column,block). Unsolvable sudoku"
+            == str(exc.value)
+        )
 
 
 def test_validate_sudoku_type():
