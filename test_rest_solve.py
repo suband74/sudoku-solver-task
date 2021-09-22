@@ -1,13 +1,10 @@
 from rest_solve import client
 
 
-def test_get():
-    res = client.get("/solve")
-
-    assert res.status_code == 200
-
-
 def test_post():
+    """
+    Тестируем POST-запрос.
+    """
     data = {
         "table": [
             [1, 2, 3, 4, 0, 6, 7, 8, 9],

@@ -7,8 +7,7 @@ from solve_sudoku import validate_sudoku
 
 def test_validate_sudoku_str():
     """
-    Проверка входящего судоку на одинаковые цифры в строке
-    :return: True or False
+    Проверка входящего судоку на одинаковые цифры в строке.
     """
     sudoku_wrong = [
         [1, 2, 3, 4, 4, 6, 7, 8, 9],
@@ -31,8 +30,7 @@ def test_validate_sudoku_str():
 
 def test_validate_sudoku_column():
     """
-    Проверка входящего судоку на одинаковые цифры в столбце
-    :return: True or False
+    Проверка входящего судоку на одинаковые цифры в столбце.
     """
     sudoku_wrong = [
         [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -55,8 +53,7 @@ def test_validate_sudoku_column():
 
 def test_validate_sudoku_block():
     """
-    Проверка входящего судоку на одинаковые цифры в блоке 3*3
-    :return: True or False
+    Проверка входящего судоку на одинаковые цифры в блоке 3*3.
     """
     sudoku_wrong = [
         [1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -79,8 +76,7 @@ def test_validate_sudoku_block():
 
 def test_validate_sudoku_type():
     """
-    Проверка входящего судоку на тип данных(допускаются только целые цифры)
-    :return: True or False
+    Проверка входящего судоку на тип данных(допускаются только целые цифры).
     """
     sudoku_wrong = [
         [1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -100,8 +96,8 @@ def test_validate_sudoku_type():
 
 def test_validate_sudoku_num():
     """
-    Проверка входящего судоку на интервал входящих цифр(допускаются только цифры от 0 до 9)
-    :return: True or False
+    Проверка входящего судоку на интервал входящих цифр
+    (допускаются только цифры от 0 до 9).
     """
     sudoku_wrong = [
         [1, -1, 0, 0, 0, 0, 0, 0, 0],
@@ -121,8 +117,8 @@ def test_validate_sudoku_num():
 
 def test_solve():
     """
-    Проверяет работу функции.
-    :return: вместо пустых значений таблицы, обозначенных нулем, подставляет 5.
+    Проверяем работу функции, вместо пустых значений таблицы,
+    обозначенных нулем, подставляет 5.
     """
     sudoku = [
         [1, 2, 3, 4, 0, 6, 7, 8, 9],
@@ -151,8 +147,7 @@ def test_solve():
 
 def test_solve_with_all_empty_cells():
     """
-    Работа функции с пустым судоку
-    :return: True or False
+    Работа функции с пустым судоку.
     """
     sudoku = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -182,7 +177,6 @@ def test_solve_with_all_empty_cells():
 def test_solved_sudoku():
     """
     Работа функции с уже правильно решенным судоку.
-    :return: Булево
     """
     sudoku = [
         [1, 2, 6, 9, 7, 5, 8, 3, 4],

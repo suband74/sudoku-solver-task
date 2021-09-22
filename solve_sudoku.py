@@ -9,7 +9,7 @@ from decision_sudoku import solve
 
 class Box:
     def __init__(self, table, row_idx, column_idx):
-        self._rows = table[row_idx: row_idx + 3]
+        self._rows = table[row_idx : row_idx + 3]
         self._column_idx = column_idx
 
     def __iter__(self):
@@ -18,27 +18,30 @@ class Box:
                 yield row[column_idx]
 
 
-def iterate_by_boxes(table: List[List]):
+def iterate_by_boxes(table: List[List[int]]):
     for row in (0, 3, 6):
         for column in (0, 3, 6):
             yield Box(table, row, column)
 
 
-def search_same_numbers(sudoku_input: List[List]):
+def search_same_numbers(sudoku_input: List[List[int]]):
     for row in sudoku_input:
         dict_same_key = Counter(row)
-        for key in dict_same_key:
-            if key != 0 and dict_same_key[key] != 1:
-                raise ValueError(
-                    "The same numbers in the string (column,block). Unsolvable sudoku.",
-                )
+        if any(key != 0 and dict_same_key[key] != 1 for key in dict_same_key):
+            raise ValueError(
+                "The same numbers in the string (column, block). Unsolvable sudoku.",
+            )
 
 
 def validate_sudoku(sudoku_input: List[List[int]]):
     """
-    проверка входящего судоку на валидность
-    :param s: List[List[int]]
-    :return:
+    Проверка входящего судоку на валидность.
+
+    Args:
+        sudoku_input (List[List[int]]): [Входящий, нерешенный судоку]
+
+    Raises:
+        TypeError: [Исключение, в случае невалидного судоку]
     """
     for row in sudoku_input:
         for cell in row:
@@ -47,12 +50,10 @@ def validate_sudoku(sudoku_input: List[List[int]]):
 
     search_same_numbers(sudoku_input)
 
-    sudoku_input_zip = list(zip(*sudoku_input))
-    search_same_numbers(sudoku_input_zip)
+    sudoku_input_transposed = list(zip(*sudoku_input))
+    search_same_numbers(sudoku_input_transposed)
 
-    sudoku_box = [[elem for elem in box] for box in iterate_by_boxes(sudoku_input)]
-
-    search_same_numbers(sudoku_box)
+    search_same_numbers(iterate_by_boxes(sudoku_input))
 
 
 @click.command()
