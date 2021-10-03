@@ -7,7 +7,7 @@ from solve_sudoku import validate_sudoku
 
 app = Flask(__name__)
 
-client = app.test_client()
+# client = app.test_client()
 
 
 @app.route("/solve", methods=["POST"])

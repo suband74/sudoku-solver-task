@@ -1,10 +1,11 @@
-from rest_solve import client
+from rest_solve import app
 
 
 def test_post():
     """
     Тестируем POST-запрос.
     """
+    client = app.test_client()
     data = {
         "table": [
             [1, 2, 3, 4, 0, 6, 7, 8, 9],

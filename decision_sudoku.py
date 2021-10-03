@@ -37,7 +37,8 @@ def _suitable_number(board: List[List[int]], row: int, column: int, num: int) ->
     Проверяем существует ли такое число в строке, столбце, и в слайсе.
 
     Args:
-        board (List[List[int]]): [только числа 0-8]
+        board (List[List[int]]): [Список из 9 списков, в каждом из которых
+            по 9 значений (целые числа 0-9)]
         row (int): [только числа  0-8]
         column (int): [только числа  0-8]
         num (int): [только числа 1-9]
