@@ -57,23 +57,18 @@ def validate_sudoku(sudoku_input: List[List[int]]):
 
 
 @click.command()
-@click.argument("path_to_file_wiht_unsolved_sudoku", type=click.Path(exists=True))
-@click.argument("path_to_file_with_solved_sudoku", type=click.Path(exists=False))
-def main(path_to_file_wiht_unsolved_sudoku, path_to_file_with_solved_sudoku):
+@click.argument("input_file", type=click.Path(exists=True))
+@click.argument("output_file", type=click.Path(exists=False))
+def main(input_file, output_file):
     """
-    Принимаем файл с нерешенным судоку, валидируем, решаем,
-    возвращаем файл с решенным судоку.
-    Следует ввести в консоли:    python3 путь_до_файла_solve_sudoku.py
-    path_to_file_wiht_unsolved_sudoku.json
-    path_to_file_with_solved_sudoku.json
-
+    Решить судоку из input_file и записать решение в output_file.
     """
-    with open(path_to_file_wiht_unsolved_sudoku) as f:
+    with open(input_file) as f:
         data = json.load(f)
         sudoku = data["table"]
         validate_sudoku(sudoku)
         solve(sudoku)
-        with open(path_to_file_with_solved_sudoku, "w") as file:
+        with open(output_file, "w") as file:
             json.dump(data, file)
 
 

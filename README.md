@@ -17,15 +17,18 @@
 
 ### Решение в виде консольной утилиты.
 
-1. Файл с нерешенным судоку следует вводить в соответствии с шаблоном заполнения (sudoku.json).
-2. Ввод команды в консоли: `python solve_sudoku.py --help`
+1. Судоку подается на решение в full_path_to_input_file.json, далее input_file.
+2. input_file должен быть заполнен по шаблону из файла sudoku.json.
+3. Решенный судоку поступит full_path_to_output_file.json далее, output_file.
+4. Решение происходит в full_path_to_solve_sudoku.py, далее solve.
+5. Чтобы решить судоку, следует ввести в консоли: `python3 solve input_file output_file`.
 
 ### Решение по HTTP-серверу в виде REST API
 
-- Пример программного кода на языке python для получения решения с сервера:
+- Пример программного кода для получения решения с сервера:
 
 ```
-//python code
+python
 import requests
 
 
