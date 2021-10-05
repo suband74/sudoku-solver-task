@@ -18,52 +18,57 @@ class Box:
                 yield row[column_idx]
 
 
-def iterate_by_boxes(table):
-    for i in (0, 3, 6):
-        for j in (0, 3, 6):
-            yield Box(table, i, j)
+def iterate_by_boxes(table: List[List[int]]):
+    for row in (0, 3, 6):
+        for column in (0, 3, 6):
+            yield Box(table, row, column)
 
 
-def search_same_numbers(s):
-    for i in s:
-        x = Counter(i)
-        for key in x:
-            if key != 0 and x[key] != 1:
-                raise ValueError("The same numbers in the string (column,block). Unsolvable sudoku")
+def search_same_numbers(sudoku_input: List[List[int]]):
+    for row in sudoku_input:
+        dict_same_key = Counter(row)
+        if any(key != 0 and dict_same_key[key] != 1 for key in dict_same_key):
+            raise ValueError(
+                "The same numbers in the string (column, block). Unsolvable sudoku.",
+            )
 
 
-def validate_sudoku(s: List[List[int]]):
+def validate_sudoku(sudoku_input: List[List[int]]):
     """
-    проверка входящего судоку на валидность
-    :param s: List[List[int]]
-    :return:
+    Проверка входящего судоку на валидность.
+
+    Args:
+        sudoku_input (List[List[int]]): [Входящий, нерешенный судоку]
+
+    Raises:
+        TypeError: [Исключение, в случае невалидного судоку]
     """
-    for u in s:
-        for r in u:
-            if not isinstance(r, int) or 9 < r or r < 0:
+    for row in sudoku_input:
+        for cell in row:
+            if not isinstance(cell, int) or 9 < cell or cell < 0:
                 raise TypeError("sudoku can only enter numbers from 0 to 9 inclusive")
 
-    search_same_numbers(s)
+    search_same_numbers(sudoku_input)
 
-    ss = list(zip(*s))
-    search_same_numbers(ss)
+    sudoku_input_transposed = list(zip(*sudoku_input))
+    search_same_numbers(sudoku_input_transposed)
 
-    
-    d = [[elem for elem in box] for box in iterate_by_boxes(s)]
-
-    search_same_numbers(d)
+    search_same_numbers(iterate_by_boxes(sudoku_input))
 
 
 @click.command()
-@click.argument("file_start_sudoku", type=click.Path(exists=True))
-@click.argument("file_result_sudoku", type=click.Path(exists=False))
-def main(file_start_sudoku, file_result_sudoku):
-    with open(file_start_sudoku) as f:
+@click.argument("input_file", type=click.Path(exists=True))
+@click.argument("output_file", type=click.Path(exists=False))
+def main(input_file, output_file):
+    """
+    Решить судоку из input_file и записать решение в output_file.
+    """
+    with open(input_file) as f:
         data = json.load(f)
         sudoku = data["table"]
         validate_sudoku(sudoku)
         solve(sudoku)
-        with open(file_result_sudoku, "w") as file:
+        with open(output_file, "w") as file:
             json.dump(data, file)
 
 
