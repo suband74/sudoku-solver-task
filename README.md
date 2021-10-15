@@ -1,5 +1,6 @@
-![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+![](https://github.com/inkoit/sudoku-solver-task/actions/workflows/python-app.yml/badge.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # Проект решателя судоку
 
 **Цель** - обучиться использовать различные технологии в связке. В качестве ядра логики выбран алгоритм решения судоку, поскольку:
@@ -11,9 +12,9 @@
 
 ## Описание проекта
 
-- Данный проект реализует решение судоку 9х9 любой сложности, следующими подходами:
+- Данный проект реализует решение судоку 9х9 любой сложности, следующими интерфейсами:
   - В виде консольной утилиты
-  - В виде rest api по HTTP-серверу
+  - В виде REST API по HTTP-серверу
 - Введенные данные проверяются валидатором! Соблюдайте правила при вводе:
   - Значениями допускается вводить только целые цифры от 0 до 9.
   - Недопустимы одинаковые значения в одной строке, колонке, блоке 3х3.
@@ -27,17 +28,17 @@
 2. Установите виртуальную среду: `pip install virtualenv`
 3. Затем активируйте среду с помощью: `source env/bin/activate`
 4. Затем установите зависимости в виртуальную среду env/:
-  `pip install -r requirements.txt`
-
+   `pip install -r requirements.txt`
 
 ### Решение в виде консольной утилиты.
 
 1. Описание через терминал: `python3 solve_sudoku.py --help`
 2. Команда для получения решения в консоли: `python3 путь_до_solve_sudoku.py путь_до_input_file.json путь_до_output_file.json`.
+3. Файл с примером входящего судоку: `sudoku.json`
 
 ### Решение по HTTP-серверу в виде REST API
 
-- Пример программного кода на языке puthon для получения решения с сервера:
+- Пример программного кода на языке Python для получения решения с сервера:
 
 ```python
 import requests
@@ -62,8 +63,7 @@ print(res.json())
 
 #### Внешние зависимости
 
-- В качестве фреймворка для тестирования выбран pytest.
-- Контроль качества кода с помощью flake8 + доп.плагины.
-- Форматирование с помощью black.
-- Для реализации сервера использован flask.
-- Все зависимости занесены в файл requirements.txt
+- В качестве фреймворка для тестирования выбран [pytest](https://docs.pytest.org/en/6.2.x/)
+- Контроль качества кода с помощью [flake8](https://flake8.pycqa.org/en/latest/)
+- Форматирование кода с помощью [black](https://github.com/psf/black)
+- Для реализации HTTP-сервера использован [flask](https://flask-russian-docs.readthedocs.io/ru/latest/quickstart.html)
