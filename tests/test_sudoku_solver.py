@@ -1,6 +1,5 @@
 import pytest
 
-
 from src.sudoku_solver_task.cli_solve_sudoku import validate_sudoku
 from src.sudoku_solver_task.sudoku_solver import solve
 
