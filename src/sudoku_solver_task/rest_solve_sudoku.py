@@ -1,8 +1,8 @@
 from flask import Flask, request
 
 
-from src.sudoku_solver_task.cli_solve_sudoku import validate_sudoku
-from src.sudoku_solver_task.sudoku_solver import solve
+from sudoku_solver_task.cli_solve_sudoku import validate_sudoku
+from sudoku_solver_task.sudoku_solver import solve
 
 app = Flask(__name__)
 
