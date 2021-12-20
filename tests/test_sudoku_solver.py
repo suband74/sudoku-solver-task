@@ -1,8 +1,7 @@
-from decision_sudoku import solve
-
 import pytest
 
-from solve_sudoku import validate_sudoku
+from sudoku_solver_task.cli_solve_sudoku import validate_sudoku
+from sudoku_solver_task.sudoku_solver import solve
 
 
 def test_validate_sudoku_str():

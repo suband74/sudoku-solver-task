@@ -24,11 +24,10 @@
 
 ### Установка проекта на локальный компьютер
 
-1. Выполните клонирование репозитория: `git clone https://github.com/inkoit/sudoku-solver-task.git`
-2. Установите виртуальную среду: `pip install virtualenv`
-3. Затем активируйте среду с помощью: `source env/bin/activate`
-4. Затем установите зависимости в виртуальную среду env/:
-   `pip install -r requirements.txt`
+1. Должен быть предустановлен менеджер зависимостей `poetry`. Или установите `poetry` любым удобным способом. 
+   Например: `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -` 
+2. Выполните клонирование репозитория: `git clone https://github.com/inkoit/sudoku-solver-task.git`
+3. Затем выполните установку зависимостей проекта: `poetry install`
 
 ### Решение в виде консольной утилиты.
 

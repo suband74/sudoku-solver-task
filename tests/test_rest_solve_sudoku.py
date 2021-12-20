@@ -1,4 +1,4 @@
-from rest_solve import app
+from sudoku_solver_task.rest_solve_sudoku import app
 
 
 def test_post():

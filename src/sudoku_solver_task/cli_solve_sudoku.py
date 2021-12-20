@@ -4,7 +4,7 @@ from typing import List
 
 import click
 
-from decision_sudoku import solve
+from sudoku_solver_task.sudoku_solver import solve
 
 
 class Box:
